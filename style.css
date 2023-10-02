@@ -53,5 +53,9 @@
     border: 3px solid gray;
     grid-area: "gameBox";
     height: 70px;
-    /* width: 70px; */
+    width: 70px;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
