@@ -6,29 +6,30 @@ let word = ""
 
 const maxLength = 5;
 
+let currentLetter = "";
 
-function board(){
-    console.log(gameBox.length);
+function getLetter(){
+    document.addEventListener("keydown",(event)=>{
+        if(isLetter(event.key)){
+            currentLetter = event.key;
+            word += event.key;
+            console.log(currentLetter, word)
+        }
+    })
 }
-
-// function enterLetter(value){
-//     for(let i=0; i < value.length; i++){
-//         if(value.innerHTML ===""){
-//             document.addEventListener("keydown", (event)=>{
-//                 console.log(event)
-
-//             })
-         
-//         }
-
-//     }
-// }
 
 
 function isLetter(letter){
     return /^[a-zA-Z]$/.test(letter);
 }
 
+function splitDiv(array){
+    array.forEach(div){
+        
+    }
+
+
+}
 
 
 function enterKeys(){
@@ -44,29 +45,19 @@ function enterKeys(){
 };
 
 
-function checkDiv(div){
-    if(div.innerHTML ===""){
-        return true
-    }else{
-        return false
-    }
-}
 
 
-function addingDiv(array){
+function listen(array){
     array.forEach(div =>{
-        // for(i=0; i<div.length; i++){
-            if(div.innerHTML === ""){
-                console.log("empty div")
-            }
-          
+        if(div.innerHTML == ""){
+            document.addEventListener("keydown", (event)=>{
+                div.innerHTML = event.key;
+            })
+        }
     })
 }
 
-addingDiv(gameBox)
 
-enterKeys();
-board();
 
 
 
