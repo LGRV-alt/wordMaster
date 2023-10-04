@@ -34,10 +34,12 @@ function enterKeys(array){
 function removeLetter(array){
     document.addEventListener("keydown",(event)=>{
         if(event.key == "Backspace"){
-            for(let i=array.length; i>0; i--){
-                if(array[i] !=""){
+            for(let i=array.length -1; i>-1; i--){
+                if(array[i].innerHTML !=""){
                     console.log(array[i])
-                    break;   
+                    array[i].innerHTML = "";
+                    break;
+                       
                 }
             }
         }
