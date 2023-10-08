@@ -15,11 +15,13 @@ function isLetter(letter){
 
 
 
+
+
 function enterKeys(array){
     document.addEventListener("keydown", (event)=>{
         if(isLetter(event.key)){
             for(let i=0; i<array.length; i++){
-                if(array[i].innerHTML ==""){
+                if(array[i].innerHTML =="" && word.length != maxLength){
                     array[i].innerHTML = event.key;
                     word += event.key;
                     console.log(word)
@@ -31,15 +33,16 @@ function enterKeys(array){
 }
 
 
+
+
 function removeLetter(array){
     document.addEventListener("keydown",(event)=>{
         if(event.key == "Backspace"){
             for(let i=array.length -1; i>-1; i--){
                 if(array[i].innerHTML !=""){
-                    console.log(array[i])
                     array[i].innerHTML = "";
+                    word = word.slice(0,-1);
                     break;
-                       
                 }
             }
         }
@@ -50,10 +53,8 @@ function removeLetter(array){
 
 
 
-
-
-
 enterKeys(gameBox)
+
 removeLetter(gameBox);
 
 
