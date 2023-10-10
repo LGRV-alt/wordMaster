@@ -1,12 +1,30 @@
 const gameBoard = document.querySelector(".gameBoard");
 const gameBox = document.querySelectorAll(".gameBox");
 
+const word_URL = "https://words.dev-apis.com/word-of-the-day"
+
 
 let word = ""
-
+let winningWord = ""
 const maxLength = 5;
-
 let currentLetter = "";
+
+
+
+// Function to get the daily word from API
+async function getWord(){
+    const promise = await fetch(word_URL);
+    const processedResponse = await promise.json();
+    console.log(processedResponse);
+    return processedResponse.word;
+}
+
+getWord().then(result =>{
+    winningWord = result;
+})
+
+
+
 
 
 function isLetter(letter){
@@ -35,7 +53,10 @@ function handleEnter(array){
             for(let i=0; i< array.length; i++){
                 if(array[i].innerHTML !=""){
                     array[i].classList.remove("gameBox")
-                    console.log(array[i].classList);
+                    // console.log(array[i].classList);
+                    if(word === winningWord){
+                        alert("you Won")
+                    }
                     word = ""
                 }
             }

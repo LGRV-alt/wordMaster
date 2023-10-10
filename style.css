@@ -49,18 +49,6 @@
 }
 
 
-/* .gameBox{  
-    border: 3px solid gray;
-    grid-area: "gameBox";
-    height: 70px;
-    width: 70px;
-    font-size: 2rem;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    text-transform: uppercase;
-} */
-
 .box{  
     border: 3px solid gray;
     grid-area: "gameBox";
