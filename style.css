@@ -60,3 +60,9 @@
     display: flex;
     text-transform: uppercase;
 }
+
+
+
+.winningBox{
+    background-color: green;
+}

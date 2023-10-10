@@ -23,6 +23,16 @@ getWord().then(result =>{
     winningWord = result;
 })
 
+function compareWords(string, array){
+    for(let i=0; i<5; i++){
+        console.log(array[i].innerHTML, string[i]);
+        if(array[i].innerHTML === string[i]){
+            console.log("match");
+            array[i].classList.add("winningBox");
+
+        }
+    }
+}
 
 
 
@@ -50,6 +60,7 @@ function enterKeys(array){
 function handleEnter(array){
     document.addEventListener("keydown", (event)=>{
         if(event.key =="Enter" && word.length == maxLength){
+            compareWords(winningWord, array);
             for(let i=0; i< array.length; i++){
                 if(array[i].innerHTML !=""){
                     array[i].classList.remove("gameBox")
@@ -60,7 +71,7 @@ function handleEnter(array){
                     word = ""
                 }
             }
-             
+            
         }
     })
 }
