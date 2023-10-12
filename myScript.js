@@ -11,6 +11,8 @@ let currentLetter = "";
 
 
 
+
+
 // Function to get the daily word from API
 async function getWord(){
     const promise = await fetch(word_URL);
@@ -23,6 +25,18 @@ getWord().then(result =>{
     winningWord = result;
 })
 
+
+function handleEnter(array){
+    for(let i=0; i<array.length; i++){
+        if(array[i].classList.contains("gameBox") && array[i].innerHTML !=""){
+            console.log(array[i]);
+            compareWords(winningWord, array)
+            array[i].classList.remove("gameBox")
+        }
+        word=""
+    }
+}
+
 function compareWords(string, array){
     for(let i=0; i<5; i++){
         console.log(array[i].innerHTML, string[i]);
@@ -33,7 +47,6 @@ function compareWords(string, array){
         }
     }
 }
-
 
 
 
@@ -57,21 +70,32 @@ function enterKeys(array){
     })
 }
 
-function handleEnter(array){
+// function handleEnter(array){
+//     document.addEventListener("keydown", (event)=>{
+//         if(event.key =="Enter" && word.length == maxLength){
+//             console.log(array);
+//             compareWords(winningWord, array);
+//             for(let i=0; i< array.length; i++){
+//                 if(array[i].innerHTML !=""){
+//                     array[i].classList.remove("gameBox")
+//                     // console.log(array[i].classList);
+//                     if(word === winningWord){
+//                         alert("you Won")
+//                     }
+//                     word = ""
+//                 }
+//             }
+            
+//         }
+//     })
+// }
+
+
+
+function enter(){
     document.addEventListener("keydown", (event)=>{
         if(event.key =="Enter" && word.length == maxLength){
-            compareWords(winningWord, array);
-            for(let i=0; i< array.length; i++){
-                if(array[i].innerHTML !=""){
-                    array[i].classList.remove("gameBox")
-                    // console.log(array[i].classList);
-                    if(word === winningWord){
-                        alert("you Won")
-                    }
-                    word = ""
-                }
-            }
-            
+            handleEnter(gameBox);
         }
     })
 }
@@ -95,7 +119,9 @@ function removeLetter(array){
 
 
 enterKeys(gameBox);
-handleEnter(gameBox);
+enter();
+
+// handleEnter(gameBox);
 
 removeLetter(gameBox);
 
