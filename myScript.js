@@ -26,27 +26,40 @@ getWord().then(result =>{
 })
 
 
-function handleEnter(array){
+
+// Working on this section -----------------------------
+
+function handleEnter(array, string){
+    let newArr =[]
     for(let i=0; i<array.length; i++){
         if(array[i].classList.contains("gameBox") && array[i].innerHTML !=""){
-            console.log(array[i]);
-            compareWords(winningWord, array)
+            newArr.push(array[i]);
             array[i].classList.remove("gameBox")
         }
         word=""
     }
+    compareWords(winningWord, newArr);
+    // console.log(newArr)
 }
+
+
 
 function compareWords(string, array){
+    let lettersLeft;
     for(let i=0; i<5; i++){
-        console.log(array[i].innerHTML, string[i]);
+        // console.log(array[i].innerHTML, string[i]);
         if(array[i].innerHTML === string[i]){
-            console.log("match");
             array[i].classList.add("winningBox");
+            lettersLeft = string.replace(array[i].innerHTML, "")
+            console.log(lettersLeft);
 
+        }else {
+            if(array[i].classList =="box" && winningWord.includes(array[i].innerHTML)){
+                array[i].classList.add("orangeBox")
+            }
         }
     }
-}
+// ----------------------------------------------------
 
 
 
@@ -70,32 +83,13 @@ function enterKeys(array){
     })
 }
 
-// function handleEnter(array){
-//     document.addEventListener("keydown", (event)=>{
-//         if(event.key =="Enter" && word.length == maxLength){
-//             console.log(array);
-//             compareWords(winningWord, array);
-//             for(let i=0; i< array.length; i++){
-//                 if(array[i].innerHTML !=""){
-//                     array[i].classList.remove("gameBox")
-//                     // console.log(array[i].classList);
-//                     if(word === winningWord){
-//                         alert("you Won")
-//                     }
-//                     word = ""
-//                 }
-//             }
-            
-//         }
-//     })
-// }
 
 
 
 function enter(){
     document.addEventListener("keydown", (event)=>{
         if(event.key =="Enter" && word.length == maxLength){
-            handleEnter(gameBox);
+            handleEnter(gameBox, winningWord);
         }
     })
 }
