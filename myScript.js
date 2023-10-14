@@ -29,7 +29,7 @@ getWord().then(result =>{
 
 // Working on this section -----------------------------
 
-function handleEnter(array, string){
+function handleEnter(array){
     let newArr =[]
     for(let i=0; i<array.length; i++){
         if(array[i].classList.contains("gameBox") && array[i].innerHTML !=""){
@@ -43,22 +43,24 @@ function handleEnter(array, string){
 }
 
 
-
 function compareWords(string, array){
-    let lettersLeft;
-    for(let i=0; i<5; i++){
-        // console.log(array[i].innerHTML, string[i]);
-        if(array[i].innerHTML === string[i]){
-            array[i].classList.add("winningBox");
-            lettersLeft = string.replace(array[i].innerHTML, "")
-            console.log(lettersLeft);
+    let lettersLeft = string;
 
-        }else {
-            if(array[i].classList =="box" && winningWord.includes(array[i].innerHTML)){
-                array[i].classList.add("orangeBox")
-            }
+    for(let i=0; i<5; i++){
+        if(array[i].innerHTML === string[i]){
+            lettersLeft = lettersLeft.replace(array[i].innerHTML, "");
+            console.log(lettersLeft)
+            array[i].classList.add("winningBox");
         }
     }
+    for(let i=0; i<5; i++){
+        if(lettersLeft.includes(array[i].innerHTML)){
+            lettersLeft = lettersLeft.replace(array[i].innerHTML, "");
+            array[i].classList.add("orangeBox")
+        }
+    } 
+    }
+
 // ----------------------------------------------------
 
 
@@ -89,7 +91,7 @@ function enterKeys(array){
 function enter(){
     document.addEventListener("keydown", (event)=>{
         if(event.key =="Enter" && word.length == maxLength){
-            handleEnter(gameBox, winningWord);
+            handleEnter(gameBox);
         }
     })
 }
