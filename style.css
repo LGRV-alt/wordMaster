@@ -8,7 +8,7 @@
 
 
 .mainBody{
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,8 +52,8 @@
 .box{  
     border: 3px solid gray;
     grid-area: "gameBox";
-    height: 70px;
-    width: 70px;
+    height: 4rem;
+    width: 4rem;
     font-size: 2rem;
     justify-content: center;
     align-items: center;

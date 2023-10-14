@@ -14,7 +14,6 @@ let currentLetter = "";
 
 function flash(arr){
     arr.classList.add("flash");
-
     setInterval(function(){
         arr.classList.remove("flash")
     }, 100)
@@ -182,9 +181,6 @@ function removeLetter(array){
 
 enterKeys(gameBox);
 enter();
-
-
-
 removeLetter(gameBox);
 
 
