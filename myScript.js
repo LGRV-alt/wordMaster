@@ -4,6 +4,7 @@ const gameBox = document.querySelectorAll(".gameBox");
 const word_URL = "https://words.dev-apis.com/word-of-the-day"
 
 
+
 let word = ""
 let winningWord = ""
 const maxLength = 5;
@@ -11,7 +12,13 @@ let currentGuess =1
 let currentLetter = "";
 
 
+function flash(arr){
+    arr.classList.add("flash");
 
+    setInterval(function(){
+        arr.classList.remove("flash")
+    }, 100)
+}
 
 
 // Function to get the daily word from API
@@ -133,19 +140,22 @@ function restart(num){
 function enter(){
     document.addEventListener("keydown", (event)=>{
         if(event.key =="Enter" && word.length == maxLength){
-            validWord();
+            validWord(word);
         }
     })
 }
 
-function validWord(){
-    asyncPostCall(word).then(result =>{
+function validWord(str){
+    asyncPostCall(str).then(result =>{
         if(result){
             currentGuess += 1;
             restart(currentGuess);
-            winningAnswer(word, winningWord)
+            winningAnswer(str, winningWord)
             handleEnter(gameBox);
+        }else{
+            flash(gameBoard);
         }
+
     })
 }
 
